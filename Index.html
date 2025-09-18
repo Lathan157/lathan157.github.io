@@ -66,25 +66,64 @@
     <div class="blob blob-3"></div>
   </header>
 
-  <!-- About -->
-  <section id="about" class="section">
-    <div class="container">
-      <h2 class="section-title">About Me</h2>
-      <div class="row align-items-center g-4">
-        <div class="col-md-4 text-center">
-          <img src="Pictures/Lathan No Background.png" alt="Lathan Latty" class="img-fluid rounded-3 shadow-sm">
-        </div>
-        <div class="col-md-8">
-          <div class="content-card">
-            <p>Hello! I'm Lathan, a second-year Software Engineering student at Ontario Tech University with a strong passion for technology, DevOps, and system design. I enjoy building and managing complex infrastructure, from multi-node Proxmox clusters to automated home lab environments.</p>
-            <p>My technical foundation spans Linux, Windows, and macOS, as well as networking, virtualization, and storage systems. I’ve applied this knowledge in both academic and professional settings—gaining experience with IT support, POS systems, and enterprise applications during my time at Recipe Unlimited Corporation and Canada’s Wonderland.</p>
-            <p>Outside of work and school, I run a full home lab featuring Proxmox, TrueNAS, OPNsense, Docker, and IoT integrations, where I experiment with DevOps practices, automation, and advanced networking.</p>
-            <p>I’m eager to bring my problem-solving mindset and hands-on experience into real-world DevOps and software engineering challenges. Let’s connect!</p>
+ <!-- About -->
+<section id="about" class="section">
+  <div class="container">
+    <h2 class="section-title">About Me</h2>
+    <div class="row align-items-center g-4">
+      
+      <!-- Photo Carousel -->
+      <div class="col-md-4 text-center">
+        <div id="aboutCarousel" class="carousel slide shadow-sm rounded-3" data-bs-ride="carousel" data-bs-interval="4000">
+          
+          <!-- Indicators -->
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
           </div>
+
+          <!-- Slides -->
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="Pictures/Lathan Picture.JPEG" class="d-block w-100 rounded-3" alt="Lathan 1">
+            </div>
+            <div class="carousel-item">
+              <img src="Pictures/Lathan Picture 1.JPEG" class="d-block w-100 rounded-3" alt="Lathan 2">
+            </div>
+            <div class="carousel-item">
+              <img src="Pictures/Lathan Picture 2.JPEG" class="d-block w-100 rounded-3" alt="Lathan 3">
+            </div>
+            <div class="carousel-item">
+              <img src="Pictures/Lathan Picture 3.JPEG" class="d-block w-100 rounded-3" alt="Lathan 4">
+            </div>
+          </div>
+
+          <!-- Controls -->
+          <button class="carousel-control-prev" type="button" data-bs-target="#aboutCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#aboutCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- About Text -->
+      <div class="col-md-8">
+        <div class="content-card">
+          <p>Hey! I’m <strong>Lathan</strong>, a Software Engineering student at Ontario Tech University with a focus on <strong>DevOps, networking, and system design</strong>. I love solving large-scale problems—whether it’s designing reliable networks, building virtualization clusters, or automating IT workflows.</p>
+          <p>My background spans Linux, Windows, and macOS environments, and I’ve gained hands-on professional experience with IT support, enterprise systems, and POS infrastructure through roles at <strong>Recipe Unlimited Corporation</strong> and <strong>Canada’s Wonderland</strong>.</p>
+          <p>In my free time, I run a multi-node home lab featuring <strong>Proxmox, TrueNAS, OPNsense, Docker, and Ubiquiti networking</strong>. It’s my playground for testing enterprise-style infrastructure, automation, and monitoring—skills I’m excited to bring into professional DevOps and software engineering roles.</p>
+          <p>Always eager to learn, experiment, and connect—let’s build something awesome together.</p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
+
 
   <!-- Experience -->
   <section id="experience" class="section alt">
