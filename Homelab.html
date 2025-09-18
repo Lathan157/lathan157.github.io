@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lathan’s Home Lab</title>
+
+  <!-- Fonts & Bootstrap 5 -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+
+  <!-- Shared theme -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Scroll progress -->
+  <div id="scroll-progress"></div>
+
+  <!-- Navbar (same look) -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top glass-nav">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">Lathan Latty</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav"
+        aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div id="nav" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="index.html#about">About Me</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#education">Education</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#experience">Professional Experience</a></li>
+          <li class="nav-item"><a class="nav-link active" href="Homelab.html">Home Lab</a></li>
+          <li class="nav-item ms-lg-2"><a class="btn btn-outline-light btn-sm"
+             href="Resume/Lathan Technical Resume July 2024.pdf" target="_blank">Resume</a></li>
+          <li class="nav-item"><a class="nav-link" target="_blank"
+             href="https://www.linkedin.com/in/lathan-l-80581a111/">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero d-flex align-items-center">
+    <div class="container text-center">
+      <p class="badge text-bg-info mb-3">Homelab · Proxmox · OPNsense · TrueNAS</p>
+      <h1 class="display-5 fw-semibold mb-3">My Home Lab Infrastructure</h1>
+      <p class="lead text-white-50 mx-auto" style="max-width: 800px;">
+        A multi-node virtualization cluster with segmented networking, ZFS storage, and self-hosted services.
+        This page breaks down nodes, storage pools, VLANs, automations, and backups.
+      </p>
+      <div class="mt-4">
+        <a href="#infrastructure" class="btn btn-light btn-lg cta-magnetic">Explore the Stack</a>
+      </div>
+    </div>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </header>
+
+  <!-- Infrastructure -->
+  <section id="infrastructure" class="section">
+    <div class="container">
+      <h2 class="section-title">Infrastructure</h2>
+      <p class="text-center mb-4">Five physical nodes, each with a focused role.</p>
+
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="content-card reveal h-100">
+            <h5 class="mb-2">Node 1 — Storage & Media</h5>
+            <p class="mb-1"><strong>Specs:</strong> AMD Ryzen 5 3600, 80 GB RAM, RTX 3060.</p>
+            <p class="mb-1"><strong>Roles:</strong> TrueNAS SCALE, Plex (GPU), utility VMs (Pi-hole, HA integrations, Tautulli).</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="content-card reveal h-100">
+            <h5 class="mb-2">Node 2 — Networking & Firewall</h5>
+            <p class="mb-1"><strong>Specs:</strong> Intel i9-9900K, 16 GB RAM, dual 10GbE.</p>
+            <p class="mb-1"><strong>Roles:</strong> OpenWRT (PPPoE) → OPNsense (VLANs, DHCP, firewall).</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="content-card reveal h-100">
+            <h5 class="mb-2">Node 3 — Monitoring & Backups</h5>
+            <p class="mb-1"><strong>Specs:</strong> Intel Alder Lake N97, 12 GB RAM, dual LAN.</p>
+            <p class="mb-1"><strong>Roles:</strong> Tailscale, Monit, Nextcloud, USB backup targets.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="content-card reveal h-100">
+            <h5 class="mb-2">Node 4 — Cameras & Web</h5>
+            <p class="mb-1"><strong>Specs:</strong> AMD Ryzen 5 3600, 32 GB RAM, RTX 3060, 10GbE.</p>
+            <p class="mb-1"><strong>Roles:</strong> Frigate NVR, Obico, Nginx (this site).</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="content-card reveal h-100">
+            <h5 class="mb-2">Node 5 — Offsite</h5>
+            <p class="mb-1"><strong>Specs:</strong> Dell OptiPlex 390.</p>
+            <p class="mb-1"><strong>Roles:</strong> Offsite backups, HA, Jellyfin, monitoring (Wyse 3040 link).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Storage -->
+  <section id="storage" class="section alt">
+    <div class="container">
+      <h2 class="section-title">Storage</h2>
+      <p class="text-center mb-4">
+        TrueNAS SCALE manages multiple ZFS pools. SAS lives on Node 1; selected SATA drives are passed through from Node 4.
+      </p>
+
+      <div class="content-card reveal">
+        <div class="table-responsive">
+          <table class="table table-dark table-striped align-middle mb-0">
+            <thead>
+              <tr>
+                <th>Pool</th><th>Configuration</th><th>Usable</th><th>Location</th><th>Purpose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Pool A</strong></td>
+                <td>6 × 6TB SAS (RAIDZ2)</td>
+                <td>~24 TB</td>
+                <td>Node 1</td>
+                <td>School (250GB+), critical Plex (~2TB), room to grow w/ redundancy</td>
+              </tr>
+              <tr>
+                <td><strong>Pool B</strong></td>
+                <td>1 × 12TB SAS (single)</td>
+                <td>12 TB</td>
+                <td>Node 1</td>
+                <td>Bulk Plex (cartoons/movies) — re-downloadable</td>
+              </tr>
+              <tr>
+                <td><strong>Pool C</strong></td>
+                <td>2 × 2TB SATA (striped)</td>
+                <td>~4 TB</td>
+                <td>Node 4 → TrueNAS</td>
+                <td>Scratch / torrent staging (no redundancy)</td>
+              </tr>
+              <tr>
+                <td><strong>Pool D</strong></td>
+                <td>2 × 4TB SATA (mirror)</td>
+                <td>~4 TB</td>
+                <td>Node 4 → TrueNAS</td>
+                <td>Photo archive (~3.4 TB) — redundant</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Networking -->
+  <section id="networking" class="section">
+    <div class="container">
+      <h2 class="section-title">Networking</h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="content-card reveal h-100">
+            <h5 class="mb-2">Routing & Firewall</h5>
+            <p class="mb-1">Internet → <strong>OpenWRT</strong> (PPPoE) → <strong>OPNsense</strong> (firewall, VLANs, DHCP)</p>
+            <p class="mb-0 text-white-50"><em>Enterprise-style segmentation, filtering, and visibility.</em></p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="content-card reveal h-100">
+            <h5 class="mb-2">Switches & Wireless</h5>
+            <ul class="mb-0">
+              <li>USW-Flex 2.5GbE — high-speed distro</li>
+              <li>UniFi US-24 core</li>
+              <li>Yuanley 8-port PoE — cameras/APs</li>
+              <li>UniFi 6+ AP — Wi-Fi 6</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="content-card reveal">
+            <h5 class="mb-2">VLANs</h5>
+            <div class="row">
+              <div class="col-md-6">
+                <ul class="mb-0">
+                  <li><strong>VLAN 5</strong> — LAN</li>
+                  <li><strong>VLAN 15</strong> — Servers</li>
+                  <li><strong>VLAN 25</strong> — Media</li>
+                  <li><strong>VLAN 45</strong> — IoT</li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <ul class="mb-0">
+                  <li><strong>VLAN 70</strong> — CCTV</li>
+                  <li><strong>VLAN 99</strong> — Management</li>
+                  <li><strong>Offsite 192.168.10.0/24</strong> — Tailscale</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="section alt">
+    <div class="container">
+      <h2 class="section-title">Services</h2>
+      <div class="content-card reveal">
+        <ul class="mb-0">
+          <li>Plex · TrueNAS · Home Assistant (main + offsite)</li>
+          <li>Frigate NVR · Obico · Nginx</li>
+          <li>Pi-hole · Tautulli · Tailscale · Monit · Nextcloud</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- IoT & Automation -->
+  <section id="iot" class="section">
+    <div class="container">
+      <h2 class="section-title">IoT & Automation</h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="content-card reveal h-100">
+            <h5 class="mb-2">Sensors & Devices</h5>
+            <ul class="mb-0">
+              <li>ESP32 + DHT22 temp/humidity across rooms</li>
+              <li>Door/lock sensors with presence tracking</li>
+              <li>Smart plugs with power monitoring</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="content-card reveal h-100">
+            <h5 class="mb-2">Automations</h5>
+            <ul class="mb-0">
+              <li>Sunrise/sunset lighting (outdoor + kitchen)</li>
+              <li>Tailscale + iPhone shortcut for presence (auto camera privacy)</li>
+              <li>Laundry machine power alerts</li>
+              <li>Energy usage dashboards</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Remote & Backup -->
+  <section id="remote" class="section alt">
+    <div class="container">
+      <h2 class="section-title">Remote & Backup</h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="content-card reveal h-100">
+            <h5 class="mb-2">Local Backups</h5>
+            <ul class="mb-0">
+              <li>VM snapshots on Node 3 (USB)</li>
+              <li>ZFS redundancy on Node 1</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="content-card reveal h-100">
+            <h5 class="mb-2">Offsite</h5>
+            <ul class="mb-0">
+              <li>Node 5 stores offsite copies</li>
+              <li>Wyse 3040 watcher via Tailscale</li>
+              <li>Nightly upload windows to fit upstream</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <p class="text-center mt-3 text-white-50">3-2-1 rule: 3 copies · 2 media · 1 offsite</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-3 text-center small">
+    <div class="container">
+      © <span id="year"></span> Lathan Latty. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
